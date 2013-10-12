@@ -1,5 +1,7 @@
 #!/usr/bin/perl -w
 # Grading script written by: Fekete Andras
+# Script is under GPLv3. Please share any improvements.
+# There is no warranty or support with this software.
 
 use strict;
 
