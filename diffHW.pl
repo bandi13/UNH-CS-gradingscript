@@ -9,15 +9,20 @@ my $class = "cs410c";
 if($#ARGV < 0) {
 	print "Usage: $0 [OPTIONS] <assignment>\n";
 	print "  -w => Ignore whitespace\n";
+	print "  -i => Ignore case\n";
+	print "  -s <StudentID> => Start from <StudentID>\n";
 	exit;
 }
 
-my $diffcmd = "diff -a -y"; # treat as text; side-by-side
+my $diffcmd = "diff -a -y -W 170"; # treat as text; side-by-side; width=200
 my $skip;
 for(my $i = 0; $i < $#ARGV; $i++) {
 	if($ARGV[$i] eq "-w") {
 		$diffcmd .= " -w";
 		print "Ignoring whitespace...\n";
+	} elsif($ARGV[$i] eq "-i") {
+		$diffcmd .= " -i";
+		print "Ignoring case...\n";
 	} elsif($ARGV[$i] eq "-s") {
 		$i++;
 		$skip = $ARGV[$i];
