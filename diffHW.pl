@@ -72,26 +72,26 @@ foreach $_ (</home/csadmin/$class/assignments/$assign/run/*>) {
 			$lines .= `cat -n $out`;
 		}
 	}
-	foreach my $out (<$_/out*>) {
+	foreach my $out (<$sol/out*>) {
 		my @tmp = split(/\//,$out);
 		if($tmp[-1] ne "output") {
-			my $curCount = `$rawDiff $sol/$tmp[-1] $out | wc -l`;
+			my $curCount = `$rawDiff $out $_/$tmp[-1] | wc -l`;
 			chomp($curCount);
 			if($wordCount == 0) {
 				$lines .= "============== $out ===================\n";
-				$lines .= `$diffcmd $sol/$tmp[-1] $out`;
+				$lines .= `$diffcmd $out $_/$tmp[-1]`;
 				$lines .= "diff Lines: $curCount\n";
 			}
 			$diffCount += $curCount;
 		}
 	}
-	foreach my $out (<$_/*.txt>) {
+	foreach my $out (<$sol/*.txt>) {
 		my @tmp = split(/\//,$out);
-		my $curCount = `$rawDiff $sol/$tmp[-1] $out | wc -l`;
+		my $curCount = `$rawDiff $out $_/$tmp[-1] | wc -l`;
 		chomp($curCount);
 		if($wordCount == 0) {
 			$lines .= "============== $out ===================\n";
-			$lines .= `$diffcmd $sol/$tmp[-1] $out`;
+			$lines .= `$diffcmd $out $_/$tmp[-1]`;
 			$lines .= "diff Lines: $curCount\n";
 		}
 		$diffCount += $curCount;
